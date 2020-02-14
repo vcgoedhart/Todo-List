@@ -1,14 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php include("_headerLayout.php"); ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<main class="container">
+    <table class="table w-100">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0</td>
+                <td>Lorem Ipsum</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Dolor Sit</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="view/lijsten/create.php">Add list +</a>
+</main>
 
-<body>
-
-</body>
-
-</html>
+<?php include("_footerLayout.php"); ?>
