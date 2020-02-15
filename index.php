@@ -1,4 +1,9 @@
-<?php include("_headerLayout.php"); ?>
+<?php
+include("_headerLayout.php");
+// 
+$stmt = $conn->prepare("SELECT * FROM lijsten");
+$stmt->execute();
+?>
 
 <main class="container">
     <table class="table w-100">
@@ -6,20 +11,30 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th class="text-right">Options</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>0</td>
-                <td>Lorem Ipsum</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Dolor Sit</td>
-            </tr>
+            <?php
+            if ($stmt->setFetchMode(PDO::FETCH_ASSOC)) {
+                foreach ($stmt->fetchAll() as $key => $value) {
+            ?>
+                    <tr>
+                        <td><?= $key; ?></td>
+                        <td><?= $value['Naam']; ?></td>
+                        <td class="text-right">
+                            <a href="#">Edit</a>
+                            |
+                            <a href="#">Delete</a>
+                        </td>
+                    </tr>
+            <?php
+                }
+            }
+            ?>
         </tbody>
     </table>
-    <a href="view/lijsten/create.php">Add list +</a>
+    <a href="view/lijsten/create.php">Add list...</a>
 </main>
 
 <?php include("_footerLayout.php"); ?>

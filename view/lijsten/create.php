@@ -7,6 +7,8 @@ if (isset($_POST["submit"])) {
     $stmt = $conn->prepare("INSERT INTO lijsten (naam) VALUES (:name);");
     $stmt->bindParam(":name", $name);
     $stmt->execute();
+
+    header("Location: ../../index.php");
 }
 ?>
 
