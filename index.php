@@ -23,7 +23,7 @@ $stmt->execute();
                         <td><?= $key; ?></td>
                         <td><?= $value['Naam']; ?></td>
                         <td class="text-right">
-                            <a href="#">Edit</a>
+                            <a href="view/lijsten/update.php?id=<?= $value['Id']; ?>&name=<?= $value['Naam']; ?>">Edit</a>
                             |
                             <a href="view/lijsten/delete.php?id=<?= $value['Id']; ?>&name=<?= $value['Naam']; ?>">Delete</a>
                         </td>
