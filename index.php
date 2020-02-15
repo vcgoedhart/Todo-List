@@ -1,6 +1,6 @@
 <?php
 include("_headerLayout.php");
-// 
+
 $stmt = $conn->prepare("SELECT * FROM lijsten");
 $stmt->execute();
 ?>
@@ -25,7 +25,7 @@ $stmt->execute();
                         <td class="text-right">
                             <a href="#">Edit</a>
                             |
-                            <a href="#">Delete</a>
+                            <a href="view/lijsten/delete.php?id=<?= $value['Id']; ?>&name=<?= $value['Naam']; ?>">Delete</a>
                         </td>
                     </tr>
             <?php

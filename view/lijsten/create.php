@@ -1,6 +1,6 @@
-<?php include("../../_headerLayout.php"); ?>
+<?php 
+include("../../_headerLayout.php");
 
-<?php
 if (isset($_POST["submit"])) {
     $name = $_POST["inputName"];
 
