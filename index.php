@@ -21,11 +21,15 @@ $stmt->execute();
             ?>
                     <tr>
                         <td><?= $key; ?></td>
-                        <td><?= $value['Naam']; ?></td>
+                        <td>
+                            <a href="view/lijsten/index.php?list_id=<?= $value['Id']; ?>">
+                                <?= $value['Naam']; ?>
+                            </a>
+                        </td>
                         <td class="text-right">
-                            <a href="view/lijsten/update.php?id=<?= $value['Id']; ?>&name=<?= $value['Naam']; ?>">Edit</a>
+                            <a href="view/lijsten/update.php?id=<?= $value['Id']; ?>">Edit</a>
                             |
-                            <a href="view/lijsten/delete.php?id=<?= $value['Id']; ?>&name=<?= $value['Naam']; ?>">Delete</a>
+                            <a href="view/lijsten/delete.php?id=<?= $value['Id']; ?>">Delete</a>
                         </td>
                     </tr>
             <?php

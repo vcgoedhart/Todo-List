@@ -13,13 +13,19 @@ if (isset($_POST["submit"])) {
 
     header("Location: ../../index.php");
 }
+
+$stmt = $conn->prepare("SELECT * FROM lijsten WHERE id=:id");
+$stmt->bindParam(":id", $id);
+$stmt->execute();
+
+$item = $stmt->fetch();
 ?>
 
 <main class="container">
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . "?id=$id"); ?>" method="POST">
         <div class="form-group">
             <label for="inputName">Name</label>
-            <input type="text" name="inputName" class="form-control" id="inputName" placeholder="Name" value="<?= $_GET['name'] ?>" required>
+            <input type="text" name="inputName" class="form-control" id="inputName" placeholder="Name" value="<?= $item['Naam'] ?>" required>
         </div>
         <button type="submit" name="submit" class="btn btn-primary">Edit</button>
     </form>
