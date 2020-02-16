@@ -20,7 +20,6 @@
 
     <!-- CONNECTION -->
     <?php include("connection.php"); ?>
-    <?php $_PATH = dirname(__FILE__); ?>
 </head>
 
 <body>
