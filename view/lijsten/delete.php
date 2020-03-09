@@ -1,5 +1,5 @@
-<?php 
-include("../../_headerLayout.php"); 
+<?php
+include("../../_headerLayout.php");
 
 $id = $_GET['id'];
 
@@ -11,16 +11,19 @@ if (isset($_POST["submit"])) {
     header("Location: ../../index.php");
 }
 
-$stmt = $conn->prepare("SELECT * FROM lijsten WHERE id=:id");
-$stmt->bindParam(":id", $id);
-$stmt->execute();
+// $stmt = $conn->prepare("SELECT * FROM lijsten WHERE id=:id");
+// $stmt->bindParam(":id", $id);
+// $stmt->execute();
 
-$item = $stmt->fetch();
+// $item = $stmt->fetch();
 ?>
 
 <main class="container">
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . "?id=$id"); ?>" method="POST">
-        <h3 class="display-4">Are you sure you want to delete <?= $item['Naam']; ?></h3>
+        <h3 class="display-4">
+            Are you sure you want to delete
+            <!--<?= $item['Naam']; ?>-->
+        </h3>
         <button type="submit" name="submit" class="btn btn-danger">Delete</button>
     </form>
 </main>
