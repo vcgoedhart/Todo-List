@@ -1,7 +1,15 @@
 tr {
-    height: 50px;
+  height: 50px;
 }
 
 tr:nth-child(even) {
-    background-color: #dddddd;
+  background-color: #dddddd;
+}
+
+.list-containers {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.list-containers > div {
+  margin: 0 8px;
 }
