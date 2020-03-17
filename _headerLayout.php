@@ -19,7 +19,7 @@
     <title>Todo List</title>
 
     <!-- CONNECTION -->
-    <?php include("connection.php"); ?>
+    <?php require("connection.php"); ?>
 </head>
 
 <body>
