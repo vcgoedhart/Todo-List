@@ -3,6 +3,7 @@ include("_headerLayout.php");
 
 $stmt = $conn->prepare("SELECT * FROM lijsten");
 $stmt->execute();
+
 ?>
 
 
@@ -19,8 +20,9 @@ $stmt->execute();
                     <hr>
 
                     <div class="task-container">
-
                     </div>
+
+                    <a href="">Add task...</a>
                 </div>
             </div>
         <?php
