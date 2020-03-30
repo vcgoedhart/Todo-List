@@ -1,18 +1,17 @@
 <?php
 include("../../_headerLayout.php");
 
-$stmt = $conn->prepare("SELECT * FROM list");
+$stmt = $conn->prepare("SELECT * FROM taken");
 $stmt->execute();
 
 if (isset($_POST['submit'])) {
-    $list_id = $_POST["inputList_Id"];
     $description = $_POST["inputDescription"];
     $duration = $_POST["inputDuration"];
     $status = $_POST["inputStatus"];
 
-    $stmt = $conn->prepare("INSERT INTO taken (lijsten_id, beschrijving, duur, status) VALUES (:list_id, :description, :duration, :status);");
+    $stmt = $conn->prepare("INSERT INTO taken (beschrijving, status, duration, lijstenid) VALUES (:description, :status, :duration, 42);");
 
-    $stmt->bindParam(":list_id", $list_id);
+    // $stmt->bindParam(":listId", 42/*$listId*/);
     $stmt->bindParam(":description", $description);
     $stmt->bindParam(":duration", $duration);
     $stmt->bindParam(":status", $status);
@@ -28,26 +27,20 @@ if (isset($_POST['submit'])) {
         <div class="col">
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter task name" required>
-                    <label for="name">List</label>
-
-                    <select name="list_id" class="form-control form-control-sm" required>
-                        <?php
-                        foreach ($stmt->fetchAll() as $list) {
-                        ?>
-                            <option value="<?= $list['id'] ?>"><?= $list['name'] ?></option>
-                        <?php
-                        }
-                        ?>
-                    </select>
-                    <label for="duur" class="col-form-label">duur</label>
-                    <input required class="form-control" type="time" id="duur" name="duur">
+                    <label for="name">Taak beschrijving</label>
+                    <input type="text" name="inputDescription" class="form-control" id="name" placeholder=".':)" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Duur</label>
+                    <input type="text" name="inputDuration" class="form-control" id="name" placeholder=".':)" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Status</label>
+                    <input type="text" name="inputStatus" class="form-control" id="name" placeholder=".':)" required>
                 </div>
                 <button type="submit" name="submit" class="btn btn-primary">submit</button>
             </form>
         </div>
     </div>
-</div>
 
-<?php include("../../_footerLayout.php"); ?>
+    <?php include("../../_footerLayout.php"); ?>
