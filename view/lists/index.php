@@ -1,8 +1,8 @@
 <?php
-require("connection.php");
-require("view/lists/init.php");
+require("../../connection.php");
+require("../tasks/init.php");
 
-include("_layout/_headerLayout.php");
+include("../../_layout/_headerLayout.php");
 ?>
 
 <main class="container">
@@ -10,7 +10,9 @@ include("_layout/_headerLayout.php");
         <thead class="thead-dark">
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>Description</th>
+                <th>Duration</th>
+                <th>Status</th>
                 <th>
                     <p>Options</p>
                 </th>
@@ -21,8 +23,8 @@ include("_layout/_headerLayout.php");
 </main>
 
 <script>
-    var JSONArray = <?= $list_JSON ?>;
+    var JSONArray = <?= $task_JSON ?>;
 </script>
-<script src="script/tableLoader.js"></script>
+<script src="../../script/tableLoader.js"></script>
 
-<?php include("_layout/_footerLayout.php"); ?>
+<?php include("../../_layout/_footerLayout.php"); ?>
