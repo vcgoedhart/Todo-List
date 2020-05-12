@@ -1,15 +1,17 @@
-tr {
-  height: 50px;
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
+td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }
 
-.list-containers {
-  display: grid;
-  grid-template-columns: auto auto;
-}
-.list-containers > div {
-  margin: 0 8px;
+th > p,
+td > a {
+  margin: 0 4px;
+  float: right;
 }
