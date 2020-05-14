@@ -4,14 +4,20 @@
  * @param int index - Used to showcase the position of the item.
  * @param string filterOption - Used to filter an item off the list.
  */
-(function loadTable(index, filterOption) {
+function loadTable(index, array) {
     var container = document.getElementById("table-container");
 
-    for (const arr of JSONArray) {
+    if (!array) {
+        array = JSONArray;
+        array.sort(function (a, b) { return parseFloat(b.duration) - parseFloat(a.duration); });
+    }
+
+    for (const arr of array) {
         var tr = document.createElement("tr");
         tr.setAttribute("data-id", arr['id']);
 
         for (const item in arr) {
+
             var td = document.createElement("td");
             var textNode = document.createTextNode(arr[item]);
 
@@ -27,7 +33,7 @@
         createOptions(tr, arr['id']);
         container.appendChild(tr);
     }
-})(1);
+};
 
 /**
  * Creates the edit & delete option for the list.
@@ -48,4 +54,7 @@ function createOptions(row, id) {
     }
 
     row.appendChild(td);
-}
+};
+
+// Initialise table loading at index 1
+loadTable(1);
