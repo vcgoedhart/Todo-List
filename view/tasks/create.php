@@ -31,11 +31,14 @@ include("../../_layout/_headerLayout.php");
         </div>
         <div class="form-group">
             <label for="inputStatus">Status</label>
-            <input type="text" name="inputStatus" class="form-control" id="inputStatus" placeholder="Status" required>
+            <select name="inputStatus" id="inputStatus" class="form-control">
+                <option value="Incomplete">Incomplete</option>
+                <option value="Complete">Complete</option>
+            </select>
         </div>
         <div class="form-group">
-            <label for="inputDuration">Duration</label>
-            <input type="text" name="inputDuration" class="form-control" id="inputDuration" placeholder="Duration" required>
+            <label for="inputDuration">Duration in minutes</label>
+            <input type="number" name="inputDuration" class="form-control" id="inputDuration" placeholder="Duration" required>
         </div>
         <button type="submit" name="submit" class="btn btn-primary">Add</button>
     </form>
