@@ -14,11 +14,11 @@ include("../../_layout/_headerLayout.php");
                 <th>ID</th>
                 <th>Description</th>
                 <th>Duration
-                    <button class="btn btn-primary" onclick="filterDuration();">Switch</button>
+                    <button class="btn btn-primary" onclick="manageFilter('duration');">Switch</button>
                 </th>
                 <th>Status
-                    <button class="btn btn-primary" onclick="filterStatus();">Toggle</button>
-                    <button class="btn btn-primary" onclick="filterDefault();">Default</button>
+                    <button class="btn btn-primary" onclick="manageFilter('status');">Toggle</button>
+                    <button class="btn btn-primary" onclick="manageFilter(null);">Default</button>
                 </th>
                 <th>
                     <p>Options</p>
@@ -36,53 +36,69 @@ include("../../_layout/_headerLayout.php");
 </script>
 <script src="../../script/tableLoader.js"></script>
 <script>
-    var durationToggle = 0,
-        statusToggle = "Incomplete";
+    var statusToggle = null,
+        durationToggle = 0;
 
     /**
-     * Filters the table to show the duration from 'high - low' or 'low - high' 
+     * Manages which type it should filter. <Status, Duration>
+     * 
+     * @param string filterType - This string is used to identify which type of filter it is.
      */
-    function filterDuration() {
+    function manageFilter(filterType) {
         document.getElementById("table-container").innerHTML = "";
 
-        var toggleValue = durationToggle === 1 ? durationToggle = 0 : durationToggle = 1;
         var arrayCopy = JSONArray;
 
-        if (toggleValue === 1) {
-            arrayCopy.sort(function(a, b) {
-                return parseFloat(a.duration) - parseFloat(b.duration);
-            });
-        } else {
-            arrayCopy.sort(function(a, b) {
-                return parseFloat(b.duration) - parseFloat(a.duration);
-            });
+        if (filterType === null) {
+            statusToggle = null;
+        }
+        if (filterType === "status") {
+            var statusToggleValue = statusToggle === "Complete" ? statusToggle = "Incomplete" : statusToggle = "Complete";
+            arrayCopy = filterStatus(arrayCopy, statusToggleValue);
+        }
+        if (filterType === "duration") {
+            var durationToggleValue = durationToggle === 1 ? durationToggle = 0 : durationToggle = 1;
+            arrayCopy = filterDuration(arrayCopy, durationToggleValue);
+            if (statusToggle) {
+                arrayCopy = filterStatus(arrayCopy, statusToggle);
+            }
         }
 
         loadTable(1, arrayCopy);
     }
 
     /**
-     * Filters the table to only show the columns that are 'Complete' or 'Incomplete 
+     * Removes every incomplete or complete status according to the filter.
+     * 
+     * @param array array - The array to filter
+     * @param string value - The value to find which items it has to remove
+     * @return array 
      */
-    function filterStatus() {
-        document.getElementById("table-container").innerHTML = "";
-
-        var toggleValue = statusToggle === "Complete" ? statusToggle = "Incomplete" : statusToggle = "Complete";
-        var arrayCopy = JSONArray;
-
-        arrayCopy = arrayCopy.filter(function(obj) {
-            return obj.status !== toggleValue;
+    function filterStatus(array, value) {
+        array = array.filter(function(obj) {
+            return obj.status !== value;
         });
-
-        loadTable(1, arrayCopy);
+        return array;
     }
 
     /**
-     * Sets the table back to default
+     * Sort the duration from 'high - low' or 'low - high'
+     * 
+     * @param array array - The array to filter
+     * @param int value - Toggle value to toggle between 'high - low' and 'low - high'
+     * @return array 
      */
-    function filterDefault() {
-        document.getElementById("table-container").innerHTML = "";
-        loadTable(1);
+    function filterDuration(array, value) {
+        if (value === 1) {
+            array.sort(function(a, b) {
+                return parseFloat(a.duration) - parseFloat(b.duration);
+            });
+        } else {
+            array.sort(function(a, b) {
+                return parseFloat(b.duration) - parseFloat(a.duration);
+            });
+        }
+        return array;
     }
 </script>
 
