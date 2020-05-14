@@ -8,7 +8,7 @@ if (isset($_POST["submit"])) {
     $status = $_POST["inputStatus"];
     $duration = $_POST["inputDuration"];
 
-    $stmt = $conn->prepare("INSERT INTO `tasks`(`description`, `duration`, `status`, `list_id`) VALUES (:description, :status, :duration, :list_id)");
+    $stmt = $conn->prepare("INSERT INTO `tasks`(`description`, `duration`, `status`, `list_id`) VALUES (:description, :duration, :status, :list_id)");
 
     $stmt->bindParam(":description", $description);
     $stmt->bindParam(":status", $status);
@@ -17,7 +17,7 @@ if (isset($_POST["submit"])) {
 
     $stmt->execute();
 
-    header("Location: ../../index.php");
+    header("Location: ../../view/lists/index.php?list_id=$list_id");
 }
 
 include("../../_layout/_headerLayout.php");

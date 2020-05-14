@@ -1,7 +1,7 @@
 <?php
 require("../../connection.php");
 
-$list_id = $_GET['list_id'];
+$list_id = $_GET['id'];
 
 if (isset($_POST["submit"])) {
     $stmt = $conn->prepare("DELETE FROM `lists` WHERE `list_id` = :list_id");
@@ -15,7 +15,7 @@ include("../../_layout/_headerLayout.php");
 ?>
 
 <main class="container">
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . "?list_id=$list_id"); ?>" method="POST">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . "?id=$list_id"); ?>" method="POST">
         <h3 class="display-4">
             Are you sure you want to delete
         </h3>

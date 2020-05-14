@@ -20,10 +20,12 @@ include("../../_layout/_headerLayout.php");
         </thead>
         <tbody id="table-container"></tbody>
     </table>
+    <a href="../tasks/create.php?list_id=<?= $_GET["list_id"]; ?>">Add Task...</a>
 </main>
 
 <script>
     var JSONArray = <?= $task_JSON ?>;
+    var dbColumnName = "tasks";
 </script>
 <script src="../../script/tableLoader.js"></script>
 

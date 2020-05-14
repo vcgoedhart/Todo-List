@@ -9,7 +9,7 @@ $task_obj = array();
 
 foreach ($stmt->fetchAll() as $task) {
     $obj = (object) array();
-    $obj->task_id = $task['task_id'];
+    $obj->id = $task['task_id'];
     $obj->description = $task['description'];
     $obj->duration = $task['duration'];
     $obj->status = $task['status'];

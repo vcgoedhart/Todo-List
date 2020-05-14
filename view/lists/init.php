@@ -6,7 +6,7 @@ $list_obj = array();
 
 foreach ($stmt->fetchAll() as $list) {
     $obj = (object) array();
-    $obj->list_id = $list['list_id'];
+    $obj->id = $list['list_id'];
     $obj->name = $list['name'];
 
     array_push($list_obj, $obj);
