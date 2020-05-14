@@ -18,11 +18,24 @@ include("_layout/_headerLayout.php");
         </thead>
         <tbody id="table-container"></tbody>
     </table>
+    <a href="view/lists/create.php">Add List...</a>
 </main>
 
 <script>
     var JSONArray = <?= $list_JSON ?>;
+    var dbColumnName = "lists";
 </script>
 <script src="script/tableLoader.js"></script>
+<script>
+    var rows = document.getElementById("table-container").childNodes;
+    for (var i = 0; i < rows.length; i++) {
+        (function(i) {
+            var list_id = rows[i].getAttribute("data-id");
+            rows[i].onclick = function() {
+                window.location.href = "/School/Todo-List/view/lists/index.php?list_id=" + list_id;
+            };
+        })(i);
+    }
+</script>
 
 <?php include("_layout/_footerLayout.php"); ?>
