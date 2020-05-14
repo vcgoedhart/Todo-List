@@ -4,7 +4,7 @@
  * @param int index - Used to showcase the position of the item.
  * @param string filterOption - Used to filter an item off the list.
  */
-(function loadTable(index, filterOption, createNavigation, editNavigation) {
+(function loadTable(index, filterOption) {
     var container = document.getElementById("table-container");
 
     for (const arr of JSONArray) {
