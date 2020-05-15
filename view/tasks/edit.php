@@ -44,7 +44,6 @@ include("../../_layout/_headerLayout.php");
                                                 echo "selected";
                                             } ?>>Complete</option>
             </select>
-            <!-- <input type="text" name="inputStatus" class="form-control" id="inputStatus" placeholder="Status" value="<?= $item['status'] ?>" required> -->
         </div>
         <div class="form-group">
             <label for="inputDuration">Duration in minutes</label>
